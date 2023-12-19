@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWarning, faMagicWandSparkles } from "@fortawesome/free-solid-svg-icons";
-import "./Weapon.css";
+import { faX, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { first } from "lodash";
 
 function Weapon(props) {
   const [weaponName, setWeaponName] = useState("");
   const [barrel, setBarrelName] = useState("");
   const [magazine, setMagazine] = useState("");
-  const [lightLevel, setLightLevel] = useState();
+  const [lightLevel, setLightLevel] = useState("");
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
@@ -33,25 +32,25 @@ function Weapon(props) {
   };
 
   return (
-    <div className="card my-2">
-      <img src={props.weapon.image} alt="Our Weapons" className="card-img-top mx-auto" />
+    <div className="card my-2 bg-secondary">
+      <img src={props.weapon.image} alt="Our Weapons" className="card-img-top m-auto" />
       {!editMode && (
         <ul className="list-group list-group-flush">
-          <li className="list-group-item text-center">{props.weapon.weaponName}</li>
-          <li className="list-group-item text-center">{props.weapon.barrel}</li>
-          <li className="list-group-item text-center">{props.weapon.magazine}</li>
-          <li className="list-group-item text-center">{props.weapon.lightLevel}</li>
+          <li className="list-group-item text-center bg-secondary text-white">{props.weapon.weaponName}</li>
+          <li className="list-group-item text-center bg-secondary text-white">{props.weapon.barrel}</li>
+          <li className="list-group-item text-center bg-secondary text-white">{props.weapon.magazine}</li>
+          <li className="list-group-item text-center bg-secondary text-white">{props.weapon.lightLevel}</li>
           <button type="button" className="btn btn-danger" onClick={() => props.removeWeapon(props.weapon)}>
-            Delete Weapon <FontAwesomeIcon icon={faWarning} />
+            Delete <FontAwesomeIcon icon={faX} />
           </button>
           <button type="button" className="btn btn-warning" onClick={() => setEditMode(true)}>
-            Edit Weapon <FontAwesomeIcon icon={faMagicWandSparkles} />
+            Edit <FontAwesomeIcon icon={faPencil} />
           </button>
         </ul>
       )}
       {editMode && (
         <ul className="list-group list-group-flush">
-          <li className="list-group-item text-center">
+          <li className="list-group-item text-center bg-secondary text-white">
             <input
               type="text"
               className="form-control"
@@ -59,7 +58,7 @@ function Weapon(props) {
               onChange={(evt) => setWeaponName(evt.currentTarget.value)}
             />
           </li>
-          <li className="list-group-item text-center">
+          <li className="list-group-item text-center bg-secondary text-white">
             <input
               type="text"
               className="form-control"
@@ -67,7 +66,7 @@ function Weapon(props) {
               onChange={(evt) => setBarrelName(evt.currentTarget.value)}
             />
           </li>
-          <li className="list-group-item text-center">
+          <li className="list-group-item text-center bg-secondary text-white">
             <input
               type="text"
               className="form-control"
@@ -75,7 +74,7 @@ function Weapon(props) {
               onChange={(evt) => setMagazine(evt.currentTarget.value)}
             />
           </li>
-          <li className="list-group-item text-center">
+          <li className="list-group-item text-center bg-secondary text-white">
             <input
               type="number"
               className="form-control"
@@ -84,8 +83,8 @@ function Weapon(props) {
             />
           </li>
           <li className="list-group item">
-            <button id="btnSave" className="btn btn-secondary" onClick={saveWeapon}>
-              Save Weapon
+            <button id="btnSave" className="btn btn-info" onClick={saveWeapon}>
+              Save
             </button>
           </li>
         </ul>

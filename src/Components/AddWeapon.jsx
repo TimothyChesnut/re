@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import "./AddWeapon.css";
 
 function AddWeapon(props) {
   // weaponName, barrel, magazine, photo
   const [weaponName, setWeaponName] = useState("");
   const [barrel, setBarrelName] = useState("");
   const [magazine, setMagazine] = useState("");
-  const [selectedFile, setSelectedFile] = useState();
-  const [lightLevel, setLightLevel] = useState();
+  const [selectedFile, setSelectedFile] = useState("");
+  const [lightLevel, setLightLevel] = useState("");
 
   const doWork = () => {
     const newWeapon = {
@@ -29,7 +28,7 @@ function AddWeapon(props) {
   };
 
   return (
-    <div className="row mt-5" id="addWeapon">
+    <div className="row" id="addWeapon">
       <h3>Add Weapon</h3>
       <div className="col-md-2">
         <label htmlFor="txtWeaponName" className="form-label">
@@ -63,7 +62,7 @@ function AddWeapon(props) {
         </label>
         <input
           type="text"
-          id="txtEmail"
+          id="txtMagazine"
           placeholder="Magazine"
           className="form-control"
           onChange={(evt) => setMagazine(evt.currentTarget.value)}
@@ -74,7 +73,7 @@ function AddWeapon(props) {
         <label htmlFor="fileUpload" className="form-label">
           Weapon Image
         </label>
-        <input type="file" name="file" id="fileUpload" onChange={imageUpdate} />
+        <input className="form-control" type="file" name="file" id="fileUpload" onChange={imageUpdate} />
       </div>
       <div className="col-md-2">
         <label htmlFor="txtLightLevel" className="form-label">
@@ -90,8 +89,8 @@ function AddWeapon(props) {
         />
       </div>
       <div className="col-md-2">
-        <button type="button" id="btnAdd" className="btn btn-success btn-lg" onClick={doWork}>
-          Add Weapon <FontAwesomeIcon icon={faPlusCircle} />
+        <button type="button" id="btnAdd" className="btn btn-success btn-lg my-4" onClick={doWork}>
+          Add <FontAwesomeIcon icon={faPlusCircle} />
         </button>
       </div>
     </div>

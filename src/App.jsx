@@ -7,12 +7,11 @@ import AddWeapon from "./Components/AddWeapon";
 import Weapon from "./Components/Weapon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import "./Components/Weapon.css";
 
 function App() {
   // Declaring all hooks
-  const [allWeapons, setAllWeapons] = useState(null);
-  const [searchResults, setSearchResults] = useState(null);
+  const [allWeapons, setAllWeapons] = useState("");
+  const [searchResults, setSearchResults] = useState("");
   const [keywords, setKeywords] = useState("");
   const [lightLevel, setLightLevel] = useState("");
 
@@ -180,7 +179,43 @@ function App() {
 
   // HTML for showing each entity of data and their remove buttons
   return (
-    <div className="container">
+    
+    <div className="container my-5">
+      <div className="row mt-4" id="searchWeapons">
+        <h3>Search Weapons</h3>
+        <div className="col-md-5">
+          <label htmlFor="txtKeywords">Search by Weapon Name, Magazine, or Barrel</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Malfeasance"
+            id="txtKeywords"
+            onChange={(evt) => setKeywords(evt.currentTarget.value)}
+            value={keywords}
+          />
+        </div>
+        <div className="col-md-5">
+          <label htmlFor="lightLevel">Search by Light Level</label>
+          <select value={lightLevel} onChange={(evt) => setLightLevel(evt.currentTarget.value)} className="form-select">
+            <option value="">None Specified</option>
+            {_(allWeapons)
+              .map((weapon) => weapon.lightLevel)
+              .sort()
+              .uniq()
+              .map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))
+              .value()}
+          </select>
+        </div>
+        <div className="col-md-2">
+          <button type="button" className="btn btn-primary my-4" onClick={searchWeapons}>
+            Search <FontAwesomeIcon icon={faSearch} />
+          </button>
+        </div>
+      </div>
       <div className="row" id="allWeapons">
         <h3>Current Weapons</h3>
         {searchResults &&
@@ -198,41 +233,6 @@ function App() {
       )} */}
       {/* HTML for add weapon inputs, buttons, and search input and buttons */}
       <AddWeapon addWeapon={addWeapon} />
-      <div className="row mt-4" id="searchWeapons">
-        <h3>Search Weaponsssssssssssss</h3>
-        <div className="col-md-4">
-          <label htmlFor="txtKeywords">Search by Weapon Name, Magazine, or Barrel</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Malfeasance"
-            id="txtKeywords"
-            onChange={(evt) => setKeywords(evt.currentTarget.value)}
-            value={keywords}
-          />
-        </div>
-        <div className="col-md-4">
-          <label htmlFor="lightLevel">Search by Light Level</label>
-          <select value={lightLevel} onChange={(evt) => setLightLevel(evt.currentTarget.value)} className="form-select">
-            <option value="">None Specified</option>
-            {_(allWeapons)
-              .map((weapon) => weapon.lightLevel)
-              .sort()
-              .uniq()
-              .map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))
-              .value()}
-          </select>
-        </div>
-        <div className="col-md-4">
-          <button type="button" className="btn btn-primary" onClick={searchWeapons}>
-            Search Weapons <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
