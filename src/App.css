@@ -1,3 +1,7 @@
+* {
+  background-color: black;
+}
+
 #allWeapons, #searchWeapons {
   box-shadow: 2px 2px 2px 0px white;
   border: thin solid white;
