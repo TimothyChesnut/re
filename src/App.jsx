@@ -199,7 +199,7 @@ function App() {
       {/* HTML for add weapon inputs, buttons, and search input and buttons */}
       <AddWeapon addWeapon={addWeapon} />
       <div className="row mt-4" id="searchWeapons">
-        <h3>Search Weapons</h3>
+        <h3>Search Weaponsssssssssssss</h3>
         <div className="col-md-4">
           <label htmlFor="txtKeywords">Search by Weapon Name, Magazine, or Barrel</label>
           <input
